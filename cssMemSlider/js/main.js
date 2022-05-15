@@ -32,6 +32,18 @@ function showSlide(e) {
       descs[0].classList.add('fade');
       i++;
     }
+    slides[prev].classList.add('fade-out');
+    descs[prev].classList.add('fade-out');
+    buttons[prev].classList.remove('active');
+    buttons[slideIndex].classList.add('active');
+    setTimeout(() => {
+      slides[prev].style.display = 'none';
+      slides[slideIndex].style.display = 'block';
+      slides[slideIndex].classList.remove('fade-out');
+      descs[prev].style.display = 'none';
+      descs[slideIndex].style.display = 'block';
+      descs[slideIndex].classList.remove('fade-out');
+    }, 330);
   }
 }
 
