@@ -1,94 +1,40 @@
 'use strict';
 
-// Переключение табов в блоке .season-tickets
+let slideIndex = 0;
+let slides = document.getElementsByClassName('slider__img-wrapper');
+let buttons = document.querySelectorAll('.controls button');
+let descs = document.querySelectorAll('.slider__desc-item');
+let i = 0;
 
-(function () {
-  let tabs = document.querySelector('.tabs');
-  if (!tabs) {
+slides[slideIndex].classList.remove('fade');
+slides[slideIndex].style.display = `block`;
+descs[slideIndex].classList.remove('fade');
+descs[slideIndex].style.display = `block`;
+buttons[slideIndex].classList.add('active');
+
+function showSlide(e) {
+  let prev = slideIndex;
+  let arr = Array.from(buttons);
+  let n = arr.indexOf(e.currentTarget);
+  if (n === -1) {
     return;
   }
-  let showTab = function (tabsItemTarget) {
-    if (!tabsItemTarget) {
-      return;
+  slideIndex = n;
+  if (n >= slides.length) {
+    slideIndex = 0;
+  }
+  if (n < 0) {
+    slideIndex = slides.length - 1;
+  }
+  if (n !== prev) {
+    if (i === 0) {
+      slides[0].classList.add('fade');
+      descs[0].classList.add('fade');
+      i++;
     }
-    let ratesItem = document.querySelector(tabsItemTarget.getAttribute('href'));
-    let tabsItemActive = tabsItemTarget.parentElement.querySelector('.tabs__item_active');
-    if (!(ratesItem && tabsItemActive)) {
-      return;
-    }
-    let ratesListActive = ratesItem.parentElement.querySelector('.rates__list_active');
-    if (tabsItemTarget === tabsItemActive || !ratesListActive) {
-      tabsItemTarget.blur();
-      return;
-    }
-    tabsItemActive.classList.remove('tabs__item_active');
-    ratesListActive.classList.remove('rates__list_active');
-    tabsItemTarget.classList.add('tabs__item_active');
-    tabsItemTarget.blur();
-    ratesItem.classList.add('rates__list_active');
-  };
-
-  tabs.addEventListener('click', function (evt) {
-    if (!evt.target.classList.contains('tabs__item')) {
-      return;
-    }
-    evt.preventDefault();
-    showTab(evt.target);
-  });
-})();
-
-// Слайдеры
-
-var $;
-$(document).ready(function () {
-  $('.trainers__list').slick({
-    dots: false,
-    infinite: true,
-    speed: 1100,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [{
-      breakpoint: 1199,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        infinite: false,
-        dots: false
-      }
-    },
-    {
-      breakpoint: 767,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-    ]
-  });
-  $('.reviews__list').slick({
-    variableWidth: true
-  });
-});
-
-// Маска
-
-let phone = document.querySelector('#user-phone');
-let MASK_OPTIONS = {
-  mask: '+{7}(000)0000000'
-};
-if (phone) {
-  IMask(phone, MASK_OPTIONS);
+  }
 }
 
-// localStorage
-
-let formInputs = document.querySelectorAll('.form input');
-
-if (formInputs) {
-  formInputs.forEach((item) => {
-    item.value = localStorage.getItem(item.getAttribute('id'));
-    item.addEventListener('input', () => {
-      localStorage.setItem(item.getAttribute('id'), item.value);
-    });
-  });
+for (let button of buttons) {
+  button.addEventListener(`click`, showSlide);
 }
