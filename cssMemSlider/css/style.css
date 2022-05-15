@@ -219,3 +219,122 @@ img {
   -webkit-transition: 0.2s;
   transition: 0.2s;
   background-color: #25282a; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%); }
+
+.slider {
+  margin: 0 auto;
+  padding: 10rem 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 94rem;
+  width: 100%; }
+
+.slider__pictures {
+  width: 100%;
+  margin-bottom: 3rem; }
+
+.slider__img-wrapper {
+  width: 100%;
+  display: none; }
+
+.slider img {
+  width: 100%;
+  height: 91rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 2rem; }
+  @media (max-width: 93.9rem) {
+    .slider img {
+      height: calc(100vw - 4rem); } }
+
+.slider__desc {
+  font-size: 3rem;
+  color: #ffffff;
+  width: 60%;
+  margin-top: 0.35rem; }
+
+.slider__desc-item {
+  display: none; }
+
+.slider__controls {
+  width: 25%; }
+
+.controls {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+
+.controls button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.8rem;
+  margin: 0.3rem;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  text-align: center;
+  vertical-align: top;
+  background: transparent;
+  border-radius: 50%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+
+.controls__dot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  background-color: #71abff;
+  border: 0.3rem solid #71abff;
+  border-radius: 50%; }
+
+.controls button.active .controls__dot {
+  background-color: transparent; }
+
+.controls button:hover .controls__dot {
+  background-color: #ffffff;
+  border: 0.3rem solid #ffffff; }
+
+.controls button.active:hover .controls__dot {
+  background-color: transparent;
+  border: 0.3rem solid #ffffff; }
+
+.controls button:active .controls__dot {
+  background-color: #bcbdbe;
+  border: 0.3rem solid #bcbdbe; }
+
+/*# sourceMappingURL=style.css.map */
